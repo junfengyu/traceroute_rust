@@ -48,14 +48,15 @@ A simple traceroute utility written in Rust using the `pnet` crate. This program
    cargo build --release
    ```
 
-## Usage
 
-Run the compiled program with elevated privileges:
+### Run the Program**
+
+Run the program with root privileges, specifying the destination as a command-line argument:
 
 - **Linux/macOS**:
 
   ```bash
-  sudo ./target/release/traceroute-rust
+  sudo ./target/release/traceroute-rust example.com
   ```
 
 - **Windows**:
@@ -63,41 +64,8 @@ Run the compiled program with elevated privileges:
   Open the Command Prompt or PowerShell as Administrator and run:
 
   ```cmd
-  .\target\release\traceroute-rust.exe
+  .\target\release\traceroute-rust.exe 8.8.8.8
   ```
-
-### Command-Line Arguments
-
-By default, the program traces the route to `8.8.8.8`. To specify a different destination, modify the `destination` variable in the `main.rs` file:
-
-```rust
-fn main() {
-    let destination = "example.com";
-    // Rest of the code...
-}
-```
-
-Alternatively, you can modify the code to accept command-line arguments:
-
-```rust
-use std::env;
-
-fn main() {
-    let args: Vec<String> = env::args().collect();
-    let destination = if args.len() > 1 {
-        &args[1]
-    } else {
-        "8.8.8.8"
-    };
-    // Rest of the code...
-}
-```
-
-Now you can run the program with:
-
-```bash
-sudo ./target/release/traceroute-rust example.com
-```
 
 ## Example Output
 
